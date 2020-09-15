@@ -28,6 +28,10 @@
 					http://localhost:9081/company/api/employees/
 				</companyService.json.url>
 
+				<movieControllerService.wsdl.schema.url>
+					http://localhost:8080/movies-0.0.1-SNAPSHOT/movies/
+				</movieControllerService.wsdl.schema.url>
+
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -101,6 +105,33 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.14.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<generatePackage>org.patsimas.consumer.soap.client.movieControllerService</generatePackage>
+							<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+							<schemaLanguage>WSDL</schemaLanguage>
+							<schemas>
+								<schema>
+									<url>
+										${movieControllerService.wsdl.schema.url}
+									</url>
+								</schema>
+							</schemas>
+						</configuration>
+					</execution>
+
+				</executions>
+
 			</plugin>
 
 		</plugins>
